@@ -11,8 +11,8 @@ android {
     defaultConfig {
         applicationId = "com.ahastack.poromodo"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 2
+        targetSdk = 35
+        versionCode = 4
         versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -40,6 +40,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    buildToolsVersion = "35.0.0"
+    ndkVersion = "23.1.7779620"
 }
 
 dependencies {

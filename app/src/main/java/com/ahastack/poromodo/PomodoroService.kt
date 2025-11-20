@@ -55,8 +55,6 @@ class PomodoroService : Service() {
         if (!isStarted) {
             isStarted = true
         }
-        makeForeground()
-
         when (intent?.action) {
             ACTION_START -> {
             }
@@ -77,24 +75,6 @@ class PomodoroService : Service() {
         )
         channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
         notificationManager.createNotificationChannel(channel)
-    }
-
-
-    private fun makeForeground() {
-        Log.d("KKKK", "LAUNCHING NOTI")
-        scope.launch {
-            DataStoreManager.getTimerInstance(this@PomodoroService).collectLatest { ti ->
-                val timeLeft = ti.timeLeft
-                val timeTotal = ti.timeTotal
-                val notification: Notification =
-                    NotificationCompat.Builder(this@PomodoroService, CHANNEL_ID)
-                        .setContentTitle("Pomodoro - Lets focus")
-                        .setContentText("$timeLeft / $timeTotal")
-                        .setSmallIcon(R.drawable.ic_pomo_foreground)
-                        .build()
-                startForeground(NOTIFICATION_ID, notification)
-            }
-        }
     }
 
     override fun onDestroy() {
