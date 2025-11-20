@@ -87,9 +87,7 @@ class SettingsFragment : Fragment() {
                 }
             }
         }
-        // Listener
-        val defaultRingtoneUri =
-            RingtoneManager.getActualDefaultRingtoneUri(activity, RingtoneManager.TYPE_RINGTONE)
+
         binding.notificationSoundChangeBtn.setOnClickListener {
             val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER).apply {
                 putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALL)

@@ -88,7 +88,7 @@ class PomodoroService : Service() {
                 val timeTotal = ti.timeTotal
                 val notification: Notification =
                     NotificationCompat.Builder(this@PomodoroService, CHANNEL_ID)
-                        .setContentTitle("Pomodoro Timer")
+                        .setContentTitle("Pomodoro - Lets focus")
                         .setContentText("$timeLeft / $timeTotal")
                         .setSmallIcon(R.drawable.ic_pomo_foreground)
                         .build()
@@ -96,32 +96,6 @@ class PomodoroService : Service() {
             }
         }
     }
-
-
-    private fun playRingtone() {
-        try {
-            mediaPlayer?.release()
-            mediaPlayer = MediaPlayer().apply {
-                setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .build()
-                )
-                setDataSource(
-                    this@PomodoroService,
-                    android.provider.Settings.System.DEFAULT_NOTIFICATION_URI
-                )
-                isLooping = false
-                prepare()
-                start()
-                setOnCompletionListener { it.release() }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
 
     override fun onDestroy() {
         mediaPlayer?.release()

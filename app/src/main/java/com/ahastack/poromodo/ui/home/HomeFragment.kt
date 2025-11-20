@@ -106,7 +106,6 @@ class HomeFragment : Fragment(), AddTaskDialogFragment.OnTaskAddedListener,
         button.setOnClickListener {
             if (!vm.isRunning.value) {
                 vm.startTimer()
-//                startPomodoroService()
             } else {
                 vm.pauseTimer()
             }

@@ -163,19 +163,7 @@ object DataStoreManager {
             )
         }
     }
-//    suspend fun saveTimerInstance(context: Context, ti: TimerInstance) {
-//        context.dataStore.edit { p ->
-//            p[TI_IS_RUNNING] = ti.isRunning
-//            p[TI_TIME_REMAINING] = ti.timeLeft
-//            p[TI_CURRENT_CYCLE_INDEX] = ti.currentCycleIdx
-//        }
-//    }
-//
-//    fun getIsRunning(context: Context) : Flow<Boolean> {
-//        return context.dataStore.data.map { p ->
-//            p[TI_IS_RUNNING] == true
-//        }
-//    }
+
     fun getFocusedTaskId(context: Context): Flow<Long> {
         return context.dataStore.data
             .map { preferences ->
@@ -188,16 +176,6 @@ object DataStoreManager {
             preferences[TI_CURRENT_FOCUSED_TASK_ID] = taskId
         }
     }
-
-
-
-    suspend fun advanceCycle(context: Context) {
-        context.dataStore.edit { preferences ->
-            preferences[TI_CURRENT_CYCLE_INDEX] =
-                ((preferences[TI_CURRENT_CYCLE_INDEX] ?: 0) + 1) % POMODORO_CYCLE.size
-        }
-    }
-
 
     suspend fun switchToNextDesiredPhase(context: Context, phase: PomodoroPhase) {
         context.dataStore.edit { preferences ->
